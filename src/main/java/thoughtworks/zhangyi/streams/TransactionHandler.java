@@ -2,6 +2,8 @@ package thoughtworks.zhangyi.streams;
 
 import java.util.*;
 
+import static java.util.stream.Collectors.groupingBy;
+
 public class TransactionHandler {
     public Map<Currency, List<Transaction>> filterAndGroupByCurrency(List<Transaction> transactions) {
         Map<Currency, List<Transaction>> transactionsByCurrencies = new HashMap<Currency, List<Transaction>>();
