@@ -8,9 +8,13 @@
 
 * Parallel Streams: Finding Price
 
-* Default Method: Stream
+* Default Method: Stream, ResourceService
 
 * Using Optional instead of null
 
 * New Date and Time Api
+
+# Recommended Book
+Java 8 in Action
+
 
