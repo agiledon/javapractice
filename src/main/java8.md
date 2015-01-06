@@ -6,9 +6,11 @@
 
 * Streams: Handling Expensive Transactions
 
-* Default Method
+* Parallel Streams: Finding Price
+
+* Default Method: Stream
 
 * Using Optional instead of null
 
-*
+* New Date and Time Api
 
