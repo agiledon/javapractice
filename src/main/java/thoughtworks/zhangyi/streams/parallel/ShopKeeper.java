@@ -6,10 +6,12 @@ import java.util.List;
 import static java.util.stream.Collectors.toList;
 
 public class ShopKeeper {
-    private List<Shop> shops = Arrays.asList(new Shop("BestPrice"),
-                                                new Shop("LetsSaveBig"),
-                                                new Shop("MyFavoritShop"),
-                                                new Shop("BuyItAll"));
+    private List<Shop> shops = Arrays.asList(
+            new Shop("BestPrice"),
+            new Shop("LetsSaveBig"),
+            new Shop("MyFavoriteShop"),
+            new Shop("BuyItAll")
+    );
 
     public List<String> findPrices(String product) {
         return shops.stream()

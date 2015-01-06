@@ -1,10 +1,17 @@
 package thoughtworks.zhangyi.lambda;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Orchard {
-    private List<Apple> apples = new ArrayList<Apple>();
+    private List<Apple> apples = Arrays.asList(
+            new Apple("red", 120),
+            new Apple("green", 160),
+            new Apple("red", 190),
+            new Apple("green", 90),
+            new Apple("green", 170)
+    );
 
     public List<Apple> filterGreenApples() {
         List<Apple> result = new ArrayList<Apple>();
@@ -25,5 +32,8 @@ public class Orchard {
         }
         return result;
     }
+
+    //considering about guava
+
 
 }
