@@ -1,4 +1,4 @@
-package zhangyi.insight.basic.deduplication;
+package zhangyi.insight.refactor.deduplication;
 
 import java.util.ArrayList;
 import java.util.List;

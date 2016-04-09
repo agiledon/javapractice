@@ -1,4 +1,4 @@
-package zhangyi.insight.basic.deduplication;
+package zhangyi.insight.refactor.deduplication;
 
 public class Person {
     private String name;
