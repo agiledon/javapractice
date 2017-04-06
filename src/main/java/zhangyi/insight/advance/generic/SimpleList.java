@@ -2,14 +2,14 @@ package zhangyi.insight.advance.generic;
 
 import java.util.ArrayList;
 import java.util.List;
-public class SimpleList<E> {
-    private List<E> backingStore;
+public class SimpleList<T extends Object> {
+    private List<T> backingStore;
     public SimpleList() {
-        backingStore = new ArrayList<E>();
+        backingStore = new ArrayList<T>();
     }
-    public E add(E e) {
-        if (backingStore.add(e))
-            return e;
+    public T addItem(T t) {
+        if (backingStore.add(t))
+            return t;
         else
             return null;
     }

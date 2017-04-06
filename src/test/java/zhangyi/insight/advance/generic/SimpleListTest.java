@@ -11,9 +11,9 @@ public class SimpleListTest {
         Logger log = Logger.getLogger(SimpleListTest.class.getName());
 
         SimpleList<BigDecimal> sl = new SimpleList<>();
-        sl.add(BigDecimal.ONE);
+        sl.addItem(BigDecimal.ONE);
         log.info("SimpleList size is :" + sl.size());
-        sl.add(BigDecimal.ZERO);
+        sl.addItem(BigDecimal.ZERO);
         log.info("SimpleList size is :" + sl.size());
         sl.clear();
         log.info("SimpleList size is :" + sl.size());

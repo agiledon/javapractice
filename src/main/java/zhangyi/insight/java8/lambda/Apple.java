@@ -9,6 +9,11 @@ public class Apple {
         this.weight = weight;
     }
 
+    @Override
+    public String toString() {
+        return String.format("color is %s, and weight is %d", color, weight);
+    }
+
     public String getColor() {
         return color;
     }

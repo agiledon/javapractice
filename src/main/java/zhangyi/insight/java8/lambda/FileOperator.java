@@ -10,11 +10,6 @@ import java.io.FileFilter;
  */
 public class FileOperator {
     public File[] filterHiddenFiles() {
-        return new File(".").listFiles(new FileFilter() {
-            @Override
-            public boolean accept(File file) {
-                return file.isHidden();
-            }
-        });
+        return new File(".").listFiles(File::isHidden);
     }
 }

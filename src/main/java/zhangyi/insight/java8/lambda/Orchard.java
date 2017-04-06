@@ -3,6 +3,8 @@ package zhangyi.insight.java8.lambda;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 public class Orchard {
     private List<Apple> apples = Arrays.asList(
@@ -13,24 +15,23 @@ public class Orchard {
             new Apple("green", 170)
     );
 
-    public List<Apple> filterGreenApples() {
-        List<Apple> result = new ArrayList<Apple>();
+
+    public List<Apple> filter(Predicate<Apple> predicate) {
+        ArrayList<Apple> result = new ArrayList<>();
         for (Apple apple : apples) {
-            if ("green".equals(apple.getColor())) {
+            if (predicate.test(apple)) {
                 result.add(apple);
             }
         }
         return result;
     }
 
+    public List<Apple> filterGreenApples() {
+        return filter(Apple::isGreenApple);
+    }
+
     public List<Apple> filterHeavyApples() {
-        List<Apple> result = new ArrayList<Apple>();
-        for (Apple apple : apples) {
-            if (apple.getWeight() > 150) {
-                result.add(apple);
-            }
-        }
-        return result;
+        return filter(Apple::isHeavyApple);
     }
 
     //considering about guava

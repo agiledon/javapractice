@@ -10,7 +10,8 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class Services {
-    private Services() {} //禁止用户直接调用构造函数
+    private Services() {
+    } //禁止用户直接调用构造函数
 
     private static final Map<String, Provider> providers = new ConcurrentHashMap<>();
     public static final String DEFAULT_PROVIDER_NAME = "<def>";
