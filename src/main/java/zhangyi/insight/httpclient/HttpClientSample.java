@@ -2,6 +2,7 @@ package zhangyi.insight.httpclient;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.fluent.Request;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
@@ -27,5 +28,12 @@ public class HttpClientSample {
         } finally {
             client.close();
         }
+    }
+
+    public String fluentGet(String url) throws IOException {
+        return Request.Get(url)
+                .connectTimeout(1000)
+                .socketTimeout(1000)
+                .execute().returnContent().asString();
     }
 }
