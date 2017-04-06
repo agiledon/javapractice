@@ -1,4 +1,4 @@
-package zhangyi.insight.httpclient;
+package zhangyi.insight.libararies.httpclient;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.client.ClientProtocolException;

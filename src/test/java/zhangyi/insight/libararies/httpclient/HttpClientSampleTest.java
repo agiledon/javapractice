@@ -1,4 +1,4 @@
-package zhangyi.insight.httpclient;
+package zhangyi.insight.libararies.httpclient;
 
 import org.junit.Test;
 
