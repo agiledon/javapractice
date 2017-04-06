@@ -32,8 +32,8 @@ public class HttpClientSample {
 
     public String fluentGet(String url) throws IOException {
         return Request.Get(url)
-                .connectTimeout(1000)
-                .socketTimeout(1000)
+                .connectTimeout(5000)
+                .socketTimeout(5000)
                 .execute().returnContent().asString();
     }
 }

@@ -6,8 +6,7 @@ import org.junit.Test;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.*;
+import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 
 public class PersonTest {
     private Class<Person> pClass = null;
@@ -24,36 +23,36 @@ public class PersonTest {
     @Test
     public void should_get_class_name() {
         Person person = new Person();
-        assertThat(person.getClass().getName(), is("zhangyi.insight.advance.reflection.basic.Person"));
+        assertThat(person.getClass().getName()).isEqualTo("zhangyi.insight.advance.reflection.basic.Person");
     }
 
     @Test
     public void should_get_interfaces() {
         Class<?>[] intes = pClass.getInterfaces();
-        assertThat(intes[0].getName(), is("zhangyi.insight.advance.reflection.basic.Developer"));
+        assertThat(intes[0].getName()).isEqualTo("zhangyi.insight.advance.reflection.basic.Developer");
     }
 
     @Test
     public void should_get_all_constructors() {
         Constructor<?>[] constructors = pClass.getConstructors();
-        assertThat(constructors[0].getParameterCount(), is(2));
-        assertThat(constructors[1].getParameterCount(), is(1));
+        assertThat(constructors[0].getParameterCount()).isEqualTo(2);
+        assertThat(constructors[1].getParameterCount()).isEqualTo(1);
     }
 
     @Test
     public void should_create_instance() throws IllegalAccessException, InstantiationException {
         Person person = pClass.newInstance();
-        assertNotNull(person);
-        assertNull(person.getName());
-        assertThat(person.getAge(), is(0));
+        assertThat(person).isNotNull();
+        assertThat(person.getName()).isNull();
+        assertThat(person.getAge()).isEqualTo(0);
     }
 
     @Test
     public void should_create_instance_with_parameters() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException, InstantiationException {
         Constructor<Person> constructor = pClass.getConstructor(String.class);
         Person person = constructor.newInstance("zhangyi");
-        assertNotNull(person);
-        assertThat(person.getName(), is("zhangyi"));
-        assertThat(person.getAge(), is(0));
+        assertThat(person).isNotNull();
+        assertThat(person.getName()).isEqualTo("zhangyi");
+        assertThat(person.getAge()).isEqualTo(0);
     }
 }
