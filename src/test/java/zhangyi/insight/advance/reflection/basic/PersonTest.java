@@ -1,15 +1,12 @@
 package zhangyi.insight.advance.reflection.basic;
 
-import org.hamcrest.core.IsNot;
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.internal.matchers.Null;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 
 import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.core.IsNot.not;
 import static org.junit.Assert.*;
 
 public class PersonTest {
