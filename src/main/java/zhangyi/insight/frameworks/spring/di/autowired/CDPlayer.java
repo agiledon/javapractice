@@ -1,4 +1,4 @@
-package zhangyi.insight.frameworks.spring.basic;/*                                                                      *\
+package zhangyi.insight.frameworks.spring.di.autowired;/*                                                                      *\
 **                                                                      **
 **      __  __ _________ _____          ©Mort BI                        **
 **     |  \/  / () | () |_   _|         (c) 2015                        **
@@ -8,17 +8,19 @@ package zhangyi.insight.frameworks.spring.basic;/*                              
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import zhangyi.insight.frameworks.spring.di.CompactDisc;
 
 @Component
-public class MessagePrinter {
-    final private MessageService messageService;
+public class CDPlayer implements MediaPlayer {
+    private CompactDisc cd;
 
     @Autowired
-    public MessagePrinter(MessageService messageService) {
-        this.messageService = messageService;
+    public CDPlayer(CompactDisc cd) {
+        this.cd = cd;
     }
 
-    public void printMessage() {
-        System.out.println(this.messageService.getMessage());
+    @Override
+    public String play() {
+        return cd.play();
     }
 }
