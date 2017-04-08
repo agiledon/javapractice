@@ -10,6 +10,6 @@ package zhangyi.insight.frameworks.mybatis;/*                                   
 import org.apache.ibatis.annotations.Select;
 
 public interface BlogMapper {
-    @Select("select * from blog where id = #{id}")
+    @Select("select * from blogs where id = #{id}")
     Blog selectBlog(String id);
 }

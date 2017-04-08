@@ -16,9 +16,10 @@ import java.io.InputStream;
 
 public class BlogRepository {
     public Blog find(String blogId) throws IOException {
-        String resource = "/mybatis-config.xml";
+        String resource = "mybatis-config.xml";
         InputStream inputStream = Resources.getResourceAsStream(resource);
         SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
+        sqlSessionFactory.getConfiguration().addMapper(BlogMapper.class);
         SqlSession session = sqlSessionFactory.openSession();
         try {
             BlogMapper mapper = session.getMapper(BlogMapper.class);
