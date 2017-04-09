@@ -6,15 +6,8 @@ package zhangyi.insight.frameworks.mybatis;/*                                   
 **                                                                      **
 \*                                                                      */
 
+import org.apache.ibatis.session.SqlSession;
 
-import org.apache.ibatis.annotations.Select;
-
-import java.util.List;
-
-public interface BlogMapper {
-    @Select("select * from blogs where id = #{id}")
-    Blog selectBlog(String id);
-
-    @Select("select * from blogs")
-    List<Blog> selectAll();
+public interface QueryContext<T> {
+    T execute(SqlSession session);
 }

@@ -6,26 +6,21 @@ package zhangyi.insight.frameworks.mybatis;/*                                   
 **                                                                      **
 \*                                                                      */
 
-import org.apache.ibatis.io.Resources;
-import org.apache.ibatis.session.SqlSession;
-import org.apache.ibatis.session.SqlSessionFactory;
-import org.apache.ibatis.session.SqlSessionFactoryBuilder;
-
-import java.io.IOException;
-import java.io.InputStream;
+import java.util.List;
+import java.util.Optional;
 
 public class BlogRepository {
-    public Blog find(String blogId) throws IOException {
-        String resource = "mybatis-config.xml";
-        InputStream inputStream = Resources.getResourceAsStream(resource);
-        SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
-        sqlSessionFactory.getConfiguration().addMapper(BlogMapper.class);
-        SqlSession session = sqlSessionFactory.openSession();
-        try {
+    public Optional<Blog> find(String blogId) {
+        return MyBatisUtils.executeQuery(session -> {
             BlogMapper mapper = session.getMapper(BlogMapper.class);
             return mapper.selectBlog(blogId);
-        } finally {
-            session.close();
-        }
+        });
+    }
+
+    public Optional<List<Blog>> findAll() {
+        return MyBatisUtils.executeQuery(session -> {
+            BlogMapper mapper = session.getMapper(BlogMapper.class);
+            return mapper.selectAll();
+        });
     }
 }
