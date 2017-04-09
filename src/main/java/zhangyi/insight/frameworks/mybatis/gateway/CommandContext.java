@@ -1,4 +1,4 @@
-package zhangyi.insight.frameworks.mybatis.utils;/*                                                                      *\
+package zhangyi.insight.frameworks.mybatis.gateway;/*                                                                      *\
 **                                                                      **
 **      __  __ _________ _____          ©Mort BI                        **
 **     |  \/  / () | () |_   _|         (c) 2015                        **
@@ -8,6 +8,6 @@ package zhangyi.insight.frameworks.mybatis.utils;/*                             
 
 import org.apache.ibatis.session.SqlSession;
 
-public interface QueryContext<T> {
-    T execute(SqlSession session);
+public interface CommandContext {
+    void execute(SqlSession session);
 }

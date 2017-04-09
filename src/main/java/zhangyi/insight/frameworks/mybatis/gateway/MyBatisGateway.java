@@ -1,4 +1,4 @@
-package zhangyi.insight.frameworks.mybatis.utils;/*                                                                      *\
+package zhangyi.insight.frameworks.mybatis.gateway;/*                                                                      *\
 **                                                                      **
 **      __  __ _________ _____          ©Mort BI                        **
 **     |  \/  / () | () |_   _|         (c) 2015                        **
@@ -7,17 +7,27 @@ package zhangyi.insight.frameworks.mybatis.utils;/*                             
 \*                                                                      */
 
 import org.apache.ibatis.io.Resources;
+import org.apache.ibatis.session.Configuration;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
-import zhangyi.insight.frameworks.mybatis.mapper.BlogMapper;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
-public class MyBatisUtils {
-    public static <T> Optional<T> executeQuery(QueryContext<T> context) {
+public class MyBatisGateway {
+    private List<Class<?>> registeredMappers = new ArrayList<>();
+
+    public void registerMappers(Class<?> ...mapperClasses) {
+        for (Class<?> mapperClass : mapperClasses) {
+            this.registeredMappers.add(mapperClass);
+        }
+    }
+
+    public <T> Optional<T> executeQuery(QueryContext<T> context) {
         InputStream inputStream = readConfig();
         if (inputStream == null) {
             return Optional.empty();
@@ -36,7 +46,7 @@ public class MyBatisUtils {
         }
     }
 
-    public static void executeCommand(CommandContext context) {
+    public void executeCommand(CommandContext context) {
         InputStream inputStream = readConfig();
         if (inputStream != null) {
             SqlSession session = openSession(inputStream);
@@ -49,7 +59,7 @@ public class MyBatisUtils {
         }
     }
 
-    private static InputStream readConfig() {
+    private InputStream readConfig() {
         String resource = "mybatis-config.xml";
         try {
             return Resources.getResourceAsStream(resource);
@@ -59,9 +69,10 @@ public class MyBatisUtils {
         }
     }
 
-    private static SqlSession openSession(InputStream config) {
+    private SqlSession openSession(InputStream config) {
         SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(config);
-        sqlSessionFactory.getConfiguration().addMapper(BlogMapper.class);
+        Configuration configuration = sqlSessionFactory.getConfiguration();
+        registeredMappers.forEach(mClass -> configuration.addMapper(mClass));
         return sqlSessionFactory.openSession();
     }
 }

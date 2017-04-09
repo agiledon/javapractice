@@ -6,38 +6,43 @@ package zhangyi.insight.frameworks.mybatis;/*                                   
 **                                                                      **
 \*                                                                      */
 
-import org.apache.ibatis.session.SqlSession;
 import zhangyi.insight.frameworks.mybatis.mapper.BlogMapper;
 import zhangyi.insight.frameworks.mybatis.model.Blog;
-import zhangyi.insight.frameworks.mybatis.utils.MyBatisUtils;
+import zhangyi.insight.frameworks.mybatis.gateway.MyBatisGateway;
 
 import java.util.List;
 import java.util.Optional;
 
 public class BlogRepository {
+    private MyBatisGateway myBatis = new MyBatisGateway();
+
+    public BlogRepository() {
+        myBatis.registerMappers(BlogMapper.class);
+    }
+
     public Optional<Blog> find(String blogId) {
-        return MyBatisUtils.executeQuery(session -> {
+        return myBatis.executeQuery(session -> {
             BlogMapper mapper = session.getMapper(BlogMapper.class);
             return mapper.selectBlog(blogId);
         });
     }
 
     public Optional<List<Blog>> findAll() {
-        return MyBatisUtils.executeQuery(session -> {
+        return myBatis.executeQuery(session -> {
             BlogMapper mapper = session.getMapper(BlogMapper.class);
             return mapper.selectAll();
         });
     }
 
     public void postBlog(Blog blog) {
-        MyBatisUtils.executeCommand(session -> {
+        myBatis.executeCommand(session -> {
             BlogMapper mapper = session.getMapper(BlogMapper.class);
             mapper.insertBlog(blog);
         });
     }
 
     public void removeBlog(String blogId) {
-        MyBatisUtils.executeCommand(session -> {
+        myBatis.executeCommand(session -> {
             BlogMapper mapper = session.getMapper(BlogMapper.class);
             mapper.deleteBlog(blogId);
         });
