@@ -1,4 +1,4 @@
-package zhangyi.insight.frameworks.mybatis;/*                                                                      *\
+package zhangyi.insight.frameworks.mybatis.model;/*                                                                      *\
 **                                                                      **
 **      __  __ _________ _____          ©Mort BI                        **
 **     |  \/  / () | () |_   _|         (c) 2015                        **

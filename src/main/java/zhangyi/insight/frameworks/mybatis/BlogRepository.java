@@ -6,6 +6,11 @@ package zhangyi.insight.frameworks.mybatis;/*                                   
 **                                                                      **
 \*                                                                      */
 
+import org.apache.ibatis.session.SqlSession;
+import zhangyi.insight.frameworks.mybatis.mapper.BlogMapper;
+import zhangyi.insight.frameworks.mybatis.model.Blog;
+import zhangyi.insight.frameworks.mybatis.utils.MyBatisUtils;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -21,6 +26,20 @@ public class BlogRepository {
         return MyBatisUtils.executeQuery(session -> {
             BlogMapper mapper = session.getMapper(BlogMapper.class);
             return mapper.selectAll();
+        });
+    }
+
+    public void postBlog(Blog blog) {
+        MyBatisUtils.executeCommand(session -> {
+            BlogMapper mapper = session.getMapper(BlogMapper.class);
+            mapper.insertBlog(blog);
+        });
+    }
+
+    public void removeBlog(String blogId) {
+        MyBatisUtils.executeCommand(session -> {
+            BlogMapper mapper = session.getMapper(BlogMapper.class);
+            mapper.deleteBlog(blogId);
         });
     }
 }
