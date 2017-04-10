@@ -7,5 +7,5 @@ package zhangyi.insight.basic.staticfactory;/*                                  
 \*                                                                      */
 
 public interface Service {
-    public void execute();
+    void execute();
 }
