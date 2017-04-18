@@ -1,4 +1,4 @@
-package zhangyi.insight;/*                                                                      *\
+package zhangyi.insight.frameworks.spring.boot;/*                                                                      *\
 **                                                                      **
 **      __  __ _________ _____          ©Mort BI                        **
 **     |  \/  / () | () |_   _|         (c) 2015                        **
@@ -6,9 +6,13 @@ package zhangyi.insight;/*                                                      
 **                                                                      **
 \*                                                                      */
 
-public class PhoneApp {
-    public static void main(String[] args) {
-        String filePath = PhoneApp.class.getResource("/phone.txt").getPath();
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
 
+@Controller
+public class SampleController {
+    @RequestMapping("/")
+    public String index() {
+        return "Greetings from Spring Boot!";
     }
 }
