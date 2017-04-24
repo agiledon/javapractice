@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 import java.util.Arrays;
 import java.util.List;
 
-@Component
+@Component("default")
 public class DefaultMovieFinder implements MovieFinder {
     @Override
     public List<Movie> findAll() {
